@@ -1,1 +1,1 @@
-module.exports = require('./lib/headrest')
+module.exports = require('./lib/headrest_middleware')

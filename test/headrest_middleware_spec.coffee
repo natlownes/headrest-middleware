@@ -1,5 +1,5 @@
 expect   = require('chai').expect
-headrestMiddleware = require('../lib/headrest_middleware')
+headrestMiddleware = require('../index')
 
 
 describe 'headrestMiddleware', ->
