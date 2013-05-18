@@ -1,0 +1,31 @@
+{
+  "name": "headrest-middleware",
+  "author": "Nat Lownes <nat.lownes@gmail.com> (http://looting.biz/)",
+  "description": "express middleware for headrest",
+  "main": "./index.coffee",
+  "version": "0.0.1",
+  "dependencies": {
+    "coffee-script": "~1.6.0",
+    "express": "~3.1.0"
+  },
+  "devDependencies": {
+    "honk-cake": "git://github.com/natlownes/honk-cake.git#dependencies",
+    "mocha": "~1.8.1",
+    "chai": "~1.4.2"
+  },
+  "directories": {
+    "test": "test",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "cake test"
+  },
+  "readmeFilename": "README.md",
+  "keywords": [
+  ],
+  "license": "BSD",
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
