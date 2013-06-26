@@ -13,6 +13,10 @@
     "mocha": "~1.8.1",
     "chai": "~1.4.2"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/natlownes/headrest-middleware.git"
+  },
   "directories": {
     "test": "test",
     "lib": "lib"
