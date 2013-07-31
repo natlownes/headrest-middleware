@@ -9,7 +9,7 @@
     "express": "~3.1.0"
   },
   "devDependencies": {
-    "honk-cake": "git://github.com/natlownes/honk-cake.git#dependencies",
+    "honk-cake": "git://github.com/natlownes/honk-cake.git#develop",
     "mocha": "~1.8.1",
     "chai": "~1.4.2"
   },
