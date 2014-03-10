@@ -1,16 +1,20 @@
-expect   = require('chai').expect
+expect             = require('chai').expect
+
 headrestMiddleware = require('../src/index')
 
 
 describe 'headrestMiddleware', ->
+
   it 'should return a function', ->
     expect( headrestMiddleware() ).to.be.a 'function'
 
   describe 'returned function', ->
+
     it 'should have arity of 3: request, response, next', ->
       expect( headrestMiddleware().length ).to.equal 3
 
   describe 'headrest object on request object', ->
+
     beforeEach ->
       @headrest = headrestMiddleware(
         apiRoot: '/apis/'
@@ -42,7 +46,36 @@ describe 'headrestMiddleware', ->
 
             done()
 
+        it 'will default to separating collection words with "-"', (done) ->
+          mockRequest =
+            path: '/apis/rocks/deffdoom/sedimentary'
+          mockResponse = {}
+
+          @headrest mockRequest, mockResponse, ->
+            collection = mockRequest.headrest.collection()
+            expect( collection ).to.equal 'rocks-deffdoom-sedimentary'
+
+            done()
+
+        context 'if given a separator', ->
+
+          it 'should separate words using that separator', (done) ->
+            headrest = headrestMiddleware
+              apiRoot:    '/apis/'
+              separator:  '/'
+
+            mockRequest =
+              path: '/apis/rocks/deffdoom/sedimentary'
+            mockResponse = {}
+
+            headrest mockRequest, mockResponse, ->
+              collection = mockRequest.headrest.collection()
+              expect( collection ).to.equal 'rocks/deffdoom/sedimentary'
+
+              done()
+
       context 'when processing an "index" action', ->
+
         # the length of the split path of an index action will always
         # be % 2 == 1
         it 'should not have a record id', (done) ->
@@ -92,6 +125,7 @@ describe 'headrestMiddleware', ->
               done()
 
       context 'when processing a POST', ->
+
         beforeEach ->
           @mockRequest =
             path: '/apis/rocks'
@@ -114,6 +148,7 @@ describe 'headrestMiddleware', ->
             done()
 
         context 'with multiple levels of nesting', ->
+
           beforeEach ->
             @mockRequest =
               path: '/apis/rocks/ffebac/sedimentaries'
@@ -136,6 +171,7 @@ describe 'headrestMiddleware', ->
               done()
 
       context 'when processing a GET for a single resource', ->
+
         beforeEach ->
           @mockRequest =
             path: '/apis/rocks/4'
@@ -158,6 +194,7 @@ describe 'headrestMiddleware', ->
             done()
 
         context 'with multiple levels of nesting', ->
+
           beforeEach ->
             @mockRequest =
               path: '/apis/rocks/ffebac/sedimentaries/4'
