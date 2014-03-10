@@ -1,5 +1,8 @@
 class HeadrestMiddleware
-  constructor: (@request, apiRoot='') ->
+
+  constructor: (@request, apiRoot='', opts={}) ->
+    @_fragmentSeparator = opts.separator or '-'
+
     collectionPath = @_pathWithoutApiRoot(@request.path, apiRoot)
     @fragments     = @_collectionArray(collectionPath)
     @verb          = @request.method
@@ -28,16 +31,14 @@ class HeadrestMiddleware
   _pathWithoutApiRoot: (path, apiRoot='') ->
     path.replace(apiRoot, '')
 
-  _fragmentSeparator: '-'
-
 
 headrestMiddleware = (options={}) ->
   apiRoot = options.apiRoot or '/api/'
 
   (request, response, next) ->
-    request.headrest  = new HeadrestMiddleware(request, apiRoot)
+    request.headrest  = new HeadrestMiddleware(request, apiRoot, options)
 
     next()
 
-module.exports = headrestMiddleware
 
+module.exports = headrestMiddleware

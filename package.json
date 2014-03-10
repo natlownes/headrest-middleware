@@ -3,7 +3,7 @@
   "author": "Nat Lownes <nat.lownes@gmail.com> (http://looting.biz/)",
   "description": "express middleware for headrest",
   "main": "./lib/index.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "dependencies": {
     "express": "~3.1.0"
   },
@@ -11,7 +11,8 @@
     "coffee-script": "~1.6.0",
     "honk-cake": ">=0.0.5",
     "mocha": "~1.8.1",
-    "chai": "~1.4.2"
+    "chai": "~1.4.2",
+    "coffeelint": "~1.1.0"
   },
   "repository": {
     "type": "git",
@@ -23,12 +24,17 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "cake test",
+    "test": "npm run lint && cake test",
     "test:watch": "cake test:watch",
-    "build": "find ./src -iname '*.coffee' | xargs coffee -c -o lib"
+    "build": "find ./src -iname '*.coffee' | xargs coffee -c -o lib",
+    "lint": "find src test -iname *.coffee | xargs coffeelint",
+    "push": "git push origin master && git push origin --tags",
+    "prepublish": "npm run build"
   },
   "readmeFilename": "README.md",
   "keywords": [
+    "middleware",
+    "headrest"
   ],
   "license": "BSD",
   "optionalDependencies": {},
