@@ -27,7 +27,7 @@
     "test": "npm run lint && cake test",
     "test:watch": "cake test:watch",
     "build": "find ./src -iname '*.coffee' | xargs coffee -c -o lib",
-    "lint": "find src test -iname *.coffee | xargs coffeelint",
+    "lint": "find src test -iname '*.coffee' | xargs coffeelint",
     "push": "git push origin master && git push origin --tags",
     "prepublish": "npm run build"
   },
